@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,10 @@ import { ContactComponent } from './contact/contact.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/angular/' },
+    { provide: LocationStrategy, useClass: PathLocationStrategy }.
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
